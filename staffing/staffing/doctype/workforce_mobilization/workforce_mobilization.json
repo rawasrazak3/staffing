@@ -20,9 +20,19 @@
   "staff_name",
   "employee_code",
   "employee_name",
+  "section_break_details",
+  "nationality",
+  "iqama_number",
+  "designation",
+  "column_break_details",
+  "supplier",
+  "work_location",
   "trade",
+  "section_break_rates",
   "is_a_new",
   "rate",
+  "client_rate",
+  "column_break_rates",
   "customer_code",
   "customer_name",
   "amended_from"
@@ -91,13 +101,64 @@
    "read_only": 1
   },
   {
-   "allow_on_submit": 1,
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Active\nStandby\nReleased\nCompleted",
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "fetch_from": "staff_code.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "Country",
    "read_only": 1
+  },
+  {
+   "fetch_from": "staff_code.iqama_number",
+   "fieldname": "iqama_number",
+   "fieldtype": "Data",
+   "label": "Iqama Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "staff_code.designation",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "work_location",
+   "fieldtype": "Data",
+   "label": "Work Location"
+  },
+  {
+   "fieldname": "trade",
+   "fieldtype": "Link",
+   "label": "Trade",
+   "options": "Staffing Type"
+  },
+  {
+   "fieldname": "section_break_rates",
+   "fieldtype": "Section Break",
+   "label": "Rate Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_a_new",
+   "fieldtype": "Check",
+   "label": "Is New"
   },
   {
    "depends_on": "eval:doc.is_a_new=='0'",
@@ -108,19 +169,13 @@
    "mandatory_depends_on": "eval:doc.is_a_new=='0'"
   },
   {
-   "allow_on_submit": 1,
-   "fieldname": "demobilization_date",
-   "fieldtype": "Date",
-   "label": "Demobilization Date",
-   "read_only": 1
+   "fieldname": "client_rate",
+   "fieldtype": "Currency",
+   "label": "Client Rate"
   },
   {
-   "fetch_from": "customer_code.customer_name",
-   "fieldname": "customer_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Customer Name",
-   "read_only": 1
+   "fieldname": "column_break_rates",
+   "fieldtype": "Column Break"
   },
   {
    "depends_on": "eval:doc.is_a_new=='0'",
@@ -129,6 +184,14 @@
    "label": "Customer Code",
    "mandatory_depends_on": "eval:doc.is_a_new=='0'",
    "options": "Customer"
+  },
+  {
+   "fetch_from": "customer_code.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -147,16 +210,20 @@
    "read_only": 1
   },
   {
-   "fieldname": "trade",
-   "fieldtype": "Link",
-   "label": "Trade",
-   "options": "Staffing Type"
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nStandby\nReleased\nCompleted\nWorking",
+   "read_only": 1
   },
   {
-   "default": "0",
-   "fieldname": "is_a_new",
-   "fieldtype": "Check",
-   "label": "Is New"
+   "allow_on_submit": 1,
+   "fieldname": "demobilization_date",
+   "fieldtype": "Date",
+   "label": "Demobilization Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
