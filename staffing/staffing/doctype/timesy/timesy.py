@@ -65,12 +65,70 @@ class Timesy(Document):
                 if i.working_hour == 0 and i.status == 'Working':
                     frappe.throw("Working Hour must be greater than 0 for Working")
 
+        self.recalculate_from_staffing_cost()
+
         total_deduction = 0
         if self.total_costing_rate_deduction:
             total_deduction += self.total_costing_rate_deduction
         if self.ppe_deduction:
             total_deduction += self.ppe_deduction
         self.total_deduction = total_deduction
+
+    def recalculate_from_staffing_cost(self):
+        # Daily rows must reflect the current Staffing Cost rate. The JS only
+        # recomputes a row when its status is edited, so rows can keep stale
+        # rates if the Staffing Cost rate changes after the rows are populated.
+        if self.skip_timesheet or not self.staffing_cost or not self.timesy_details:
+            return
+
+        sc = frappe.get_cached_doc("Staffing Cost", self.staffing_cost)
+        cost_rate = sc.default_cost_rate_per_hour or 0
+        bill_rate = sc.default_billing_rate_per_hour or 0
+
+        working_statuses = {"Working", "Holiday Working", "Friday Working", "Standby Pay",
+                            "Holiday Working Full Overtime", "Friday Working Full Overtime"}
+
+        total_costing = 0
+        total_billing = 0
+        total_working = 0
+        total_overtime = 0
+        total_absent = 0
+
+        for d in self.timesy_details:
+            if d.status in working_statuses and d.working_hour:
+                d.costing_hour = cost_rate * d.working_hour
+                d.billing_hour = bill_rate * d.working_hour
+            elif d.status:
+                d.costing_hour = 0
+                d.billing_hour = 0
+
+            total_working += d.working_hour or 0
+            total_costing += d.costing_hour or 0
+            total_billing += d.billing_hour or 0
+            total_overtime += d.overtime_hour or 0
+            total_absent += d.absent_hour or 0
+
+        self.total_working_hour = total_working
+        self.total_costing_rate_before_deduction = total_costing
+        self.total_billing_rate_before_deduction = total_billing
+        self.total_overtime_hour = total_overtime
+
+        if not self.manually_deduct:
+            self.total_costing_rate_deduction = total_absent
+        self.total_absent_hour = total_absent
+
+        costing_deduction = self.total_costing_rate_deduction or 0
+        self.total_costing_hour = total_costing - costing_deduction
+        if self.include_in_total_costing_rate and self.charge_amount:
+            self.total_costing_hour += self.charge_amount
+
+        if not self.manually_deduct_billing:
+            billing_deduction = total_absent
+        else:
+            billing_deduction = (self.total_billing_rate_deduction or 0) + total_absent
+        self.total_billing_hour = total_billing - billing_deduction
+        if self.additions:
+            self.total_billing_hour += self.additions
 
     @frappe.whitelist()
     def check_invoices(self):
