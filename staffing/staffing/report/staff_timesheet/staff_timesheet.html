@@ -53,6 +53,8 @@
             </td>
 			<td class="text-center" style="border: 1px solid black;width: 10%;font-size:8px">{%= __("Total Amount") %}</td>
 		</tr>
+	</thead>
+	<tbody>
         {% for(var i=0, l=data.length; i<l; i++) { %}
             {% if(data[i].employee_staff_name) { %}
                 <tr>
@@ -117,7 +119,7 @@
 
 			<td class="text-center" style="border: 1px solid black;width: 10%;font-size:8px">{%= format_number(data[data.length - 2].grand_total,"",2) %}</td>
 		</tr>
-	</thead>
+	</tbody>
 </table>
 <table  style="width: 100%;margin-top: 5%">
     <tr>

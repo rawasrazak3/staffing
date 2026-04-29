@@ -22,20 +22,19 @@ frappe.query_reports["Staff Timesheet"] = {
 					frappe.db.get_value('Supplier', supplier, ["supplier_name"], function (value) {
 						frappe.query_report.set_filter_value('supplier_name', value["supplier_name"]);
 					});
-					frappe.db.get_value('Address', {"report": 1}, ["address_line1", "city","country", "county", "state", "pincode"], function (value1) {
-						if(value1){
-							frappe.query_report.set_filter_value(
-							'address',
-							value1["address_line1"] + "," +
-							value1["city"] + ",",
-							value1["county"] + ",",
-							value1["state"] + ",",
-							value1["country"] + ",",
-							value1["pincode"]
-						);
-                        }
-
-                    })
+					frappe.db.get_value('Address', {"report": 1}, ["address_line1", "city", "country", "county", "state", "pincode"], function (value1) {
+						if (value1) {
+							const parts = [
+								value1["address_line1"],
+								value1["city"],
+								value1["county"],
+								value1["state"],
+								value1["country"],
+								value1["pincode"],
+							].filter(p => p);
+							frappe.query_report.set_filter_value('address', parts.join(", "));
+						}
+					})
 
 				} else {
 					frappe.query_report.set_filter_value('supplier_name', "");

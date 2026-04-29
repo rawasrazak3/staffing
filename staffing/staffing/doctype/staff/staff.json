@@ -88,7 +88,7 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "Staff Code",
+   "label": "Naming Series",
    "options": "HR-SF-.###",
    "read_only": 1
   },

@@ -5,12 +5,18 @@ import frappe
 from calendar import monthrange
 import datetime
 def get_columns(filters):
+	is_employee = filters.get("type") == "Employee"
 	columns = [
-		{"fieldname": "employee", "fieldtype": "Data", "width": "150"},
+		{
+			"label": "EmpID" if is_employee else "Staff Code",
+			"fieldname": "employee",
+			"fieldtype": "Link",
+			"options": "Employee" if is_employee else "Staff",
+			"width": "150",
+		},
 		{"label": "Name", "fieldname": "employee_staff_name", "fieldtype": "Data", "width": "150"},
 		{"label": "Trade", "fieldname": "designation", "fieldtype": "Data", "width": "150"},
 	]
-	columns[0]['label'] = "EmpID" if filters.get("type") == "Employee" else "StaffID"
 	return columns
 def execute(filters=None):
 	months = ['January', "February", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"]
