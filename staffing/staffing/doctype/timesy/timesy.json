@@ -377,7 +377,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-07-23 12:14:51.317884",
+ "modified": "2026-04-01 12:16:24.874591",
  "modified_by": "Administrator",
  "module": "Staffing",
  "name": "Timesy",
@@ -397,6 +397,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

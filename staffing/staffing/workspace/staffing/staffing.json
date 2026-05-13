@@ -1,25 +1,91 @@
 {
- "cards_label": "Staffing",
- "category": "Modules",
+ "app": "staffing",
  "charts": [],
+ "content": "[{\"id\":\"staffing-header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Staffing</b></span>\",\"col\":12}},{\"id\":\"staffing-card-1\",\"type\":\"card\",\"data\":{\"card_name\":\"Staffing\",\"col\":4}},{\"id\":\"staffing-card-2\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales\",\"col\":4}},{\"id\":\"staffing-card-3\",\"type\":\"card\",\"data\":{\"card_name\":\"Purchase\",\"col\":4}}]",
  "creation": "2021-10-21 07:10:33.096939",
- "developer_mode_only": 0,
- "disable_user_customization": 0,
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
- "extends_another_page": 0,
+ "for_user": "",
  "hide_custom": 0,
- "icon": "crm",
+ "icon": "briefcase",
  "idx": 0,
- "is_default": 0,
- "is_standard": 1,
+ "is_hidden": 0,
  "label": "Staffing",
  "links": [
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Sales ",
+   "label": "Staffing",
+   "link_count": 7,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Staff",
+   "link_count": 0,
+   "link_to": "Staff",
    "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Staffing Cost",
+   "link_count": 0,
+   "link_to": "Staffing Cost",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Staffing Type",
+   "link_count": 0,
+   "link_to": "Staffing Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Staffing Project",
+   "link_count": 0,
+   "link_to": "Staffing Project",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Time Sheet",
+   "link_count": 0,
+   "link_to": "Timesy",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Timesheet Additional",
+   "link_count": 0,
+   "link_to": "Timesheet Additional",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales",
+   "link_count": 3,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -27,6 +93,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Quotation",
+   "link_count": 0,
    "link_to": "Quotation",
    "link_type": "DocType",
    "onboard": 0,
@@ -36,6 +103,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Sales Order",
+   "link_count": 0,
    "link_to": "Sales Order",
    "link_type": "DocType",
    "onboard": 0,
@@ -45,6 +113,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Sales Invoice",
+   "link_count": 0,
    "link_to": "Sales Invoice",
    "link_type": "DocType",
    "onboard": 0,
@@ -54,7 +123,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Purchase",
-   "link_type": "DocType",
+   "link_count": 1,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -62,19 +131,21 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Purchase Invoice",
+   "link_count": 0,
    "link_to": "Purchase Invoice",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2022-03-07 19:06:26.402069",
+ "modified": "2024-01-01 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "Staffing",
  "name": "Staffing",
  "owner": "Administrator",
- "pin_to_bottom": 0,
- "pin_to_top": 1,
+ "public": 1,
+ "restrict_to_domain": "",
+ "roles": [],
  "shortcuts": [
   {
    "doc_view": "List",
@@ -84,20 +155,8 @@
   },
   {
    "doc_view": "List",
-   "label": "Employee",
-   "link_to": "Employee",
-   "type": "DocType"
-  },
-  {
-   "doc_view": "List",
    "label": "Staffing Cost",
    "link_to": "Staffing Cost",
-   "type": "DocType"
-  },
-  {
-   "doc_view": "List",
-   "label": "Staffing Type",
-   "link_to": "Staffing Type",
    "type": "DocType"
   },
   {
@@ -111,13 +170,7 @@
    "label": "Staffing Project",
    "link_to": "Staffing Project",
    "type": "DocType"
-  },
-  {
-   "doc_view": "List",
-   "label": "Timesheet Additional",
-   "link_to": "Timesheet Additional",
-   "type": "DocType"
   }
  ],
- "shortcuts_label": "Staffing"
+ "title": "Staffing"
 }

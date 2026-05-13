@@ -9,6 +9,15 @@ app_color = "grey"
 app_email = "janlloydangeles@gmail.com"
 app_license = "MIT"
 
+add_to_apps_screen = [
+    {
+        "name": "staffing",
+        "logo": "/assets/staffing/images/staffing-logo.png",
+        "title": "Staffing",
+        "route": "/app/staffing/staffing",
+    }
+]
+
 # Includes in <head>
 # ------------------
 
@@ -34,6 +43,9 @@ app_license = "MIT"
 doctype_js = {
 	"Sales Invoice" : "public/js/sales_invoice.js",
 	"Purchase Invoice" : "public/js/purchase_invoice.js",
+	"Project" : "public/js/project.js",
+        "Timesy": "staffing/doctype/timesy/timesy.js",
+
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -176,6 +188,7 @@ user_data_fields = [
 # 	"staffing.auth.validate"
 # ]
 
+
 fixtures = [
     {
         "doctype": "Custom Field",
@@ -188,28 +201,49 @@ fixtures = [
                     "Purchase Invoice-timesy_reference",
                     "Sales Invoice-timesy",
                     "Sales Invoice-timesy_reference",
-					"Additional Salary-timesy_list",
+                    "Additional Salary-timesy_list",
                     "Additional Salary-timesy_reference",
-					"Purchase Invoice-grand_costing_rate",
+                    "Purchase Invoice-grand_costing_rate",
                     "Sales Invoice-grand_costing_rate",
                     "Address-report",
-
-
-				]
-			]
-		]
-	},
-	{
-		"doctype": "Property Setter",
-		"filters": [
-			[
-				"name",
-				"in",
-				[
-					"Sales Invoice Item-rate-label",
-					"Purchase Invoice Item-rate-label",
-				]
-			]
-		]
-	}
+                ]
+            ]
+        ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [["dt", "in", ["Timesy", "Timesy Details"]]]
+    },
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Invoice Item-rate-label",
+                    "Purchase Invoice Item-rate-label",
+                ]
+            ]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [["doc_type", "in", ["Timesy", "Timesy Details"]]]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [["dt", "in", ["Project Milestone", "Project"]]]
+    },
+    {
+        "dt": "DocType",
+        "filters": [["custom", "=", 1]]
+    },
+    {
+        "dt": "Client Script",
+        "filters": [["name", "in", [
+            "Project Milestone Calculations",
+            "Price List Bulk Editor"
+        ]]]
+    },
 ]

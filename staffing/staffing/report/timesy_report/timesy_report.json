@@ -1,0 +1,26 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "disabled": 0,
+ "doctype": "Report",
+ "filters": [],
+ "is_standard": "Yes",
+ "letterhead": null,
+ "module": "Staffing",
+ "name": "Timesy Report",
+ "prepared_report": 0,
+ "ref_doctype": "Timesy",
+ "report_name": "Timesy Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "HR Manager"
+  },
+  {
+   "role": "HR User"
+  }
+ ]
+}

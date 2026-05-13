@@ -1,0 +1,146 @@
+{
+ "name": "Late Time Type",
+ "doctype": "DocType",
+ "module": "Staffing",
+ "naming_rule": "By fieldname",
+ "autoname": "field:late_time_type_name",
+ "engine": "InnoDB",
+ "field_order": [
+  "late_time_type_name",
+  "basic_section",
+  "grace_period_minutes",
+  "max_late_minutes_allowed",
+  "late_checkin_window",
+  "col_break_1",
+  "late_deduction_salary_component",
+  "calculation_section",
+  "late_penalty_calculation_method",
+  "fixed_penalty_per_minute",
+  "applicable_salary_components",
+  "multiplier_section",
+  "standard_multiplier",
+  "applicable_for_public_holiday",
+  "public_holiday_multiplier",
+  "applicable_for_weekend",
+  "weekend_multiplier"
+ ],
+ "fields": [
+  {
+   "fieldname": "late_time_type_name",
+   "fieldtype": "Data",
+   "label": "Name",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "basic_section",
+   "fieldtype": "Section Break",
+   "label": "Basic"
+  },
+  {
+   "fieldname": "grace_period_minutes",
+   "fieldtype": "Int",
+   "label": "Grace Period (Minutes)",
+   "description": "Minutes after shift start before late is recorded"
+  },
+  {
+   "fieldname": "max_late_minutes_allowed",
+   "fieldtype": "Int",
+   "label": "Maximum Late Minutes Allowed Per Day"
+  },
+  {
+   "fieldname": "late_checkin_window",
+   "fieldtype": "Int",
+   "label": "Late Check-in Window (Minutes)",
+   "description": "How long after shift start check-in is still accepted"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "late_deduction_salary_component",
+   "fieldtype": "Link",
+   "label": "Late Deduction Salary Component",
+   "options": "Salary Component",
+   "description": "Late deductions will be booked under this salary component"
+  },
+  {
+   "fieldname": "calculation_section",
+   "fieldtype": "Section Break",
+   "label": "Late Penalty Calculation"
+  },
+  {
+   "fieldname": "late_penalty_calculation_method",
+   "fieldtype": "Select",
+   "label": "Late Penalty Calculation Method",
+   "options": "Fixed Penalty Amount\nSalary Component Based",
+   "description": "1. Fixed Penalty Amount: A fixed, manually entered amount per late minute.\n2. Salary Component Based: (Sum of selected components) divided by (Payment Days) divided by (Standard Daily Hours) divided by 60"
+  },
+  {
+   "fieldname": "fixed_penalty_per_minute",
+   "fieldtype": "Currency",
+   "label": "Fixed Penalty Per Minute",
+   "depends_on": "eval:doc.late_penalty_calculation_method == 'Fixed Penalty Amount'"
+  },
+  {
+   "fieldname": "applicable_salary_components",
+   "fieldtype": "Table MultiSelect",
+   "label": "Applicable Salary Components",
+   "options": "Late Time Applicable Component",
+   "depends_on": "eval:doc.late_penalty_calculation_method == 'Salary Component Based'",
+   "description": "Components whose total will be used to calculate the per-minute late penalty rate"
+  },
+  {
+   "fieldname": "multiplier_section",
+   "fieldtype": "Section Break",
+   "label": "Pay Rate Multipliers"
+  },
+  {
+   "fieldname": "standard_multiplier",
+   "fieldtype": "Float",
+   "label": "Standard Multiplier",
+   "default": "1.0"
+  },
+  {
+   "fieldname": "applicable_for_public_holiday",
+   "fieldtype": "Check",
+   "label": "Apply for Public Holiday",
+   "description": "Enable to use a specific multiplier for public holidays"
+  },
+  {
+   "fieldname": "public_holiday_multiplier",
+   "fieldtype": "Float",
+   "label": "Public Holiday Multiplier",
+   "depends_on": "eval:doc.applicable_for_public_holiday == 1"
+  },
+  {
+   "fieldname": "applicable_for_weekend",
+   "fieldtype": "Check",
+   "label": "Apply for Weekend",
+   "description": "Enable to use a specific multiplier for weekends"
+  },
+  {
+   "fieldname": "weekend_multiplier",
+   "fieldtype": "Float",
+   "label": "Weekend Multiplier",
+   "depends_on": "eval:doc.applicable_for_weekend == 1"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "HR Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "HR User",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0
+  }
+ ]
+}
