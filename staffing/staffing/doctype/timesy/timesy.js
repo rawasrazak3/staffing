@@ -1239,7 +1239,7 @@ staffing.timesy.parse_date = function(dmy) {
 }
 
 // ─── STATUS OPTIONS ───────────────────────────────────────────────────────────
-staffing.timesy.STATUS_OPTIONS = ['Working', 'Holiday', 'Absent','Weekend']
+staffing.timesy.STATUS_OPTIONS = ['Working', 'Holiday', 'Absent','Weekend','On Leave']
 
 // ─── BUILD ONE INTERACTIVE ROW ────────────────────────────────────────────────
 staffing.timesy.make_row = function(frm, row) {
@@ -1505,7 +1505,8 @@ staffing.timesy.make_row = function(frm, row) {
         'Working': '#22c55e',
         'Holiday': '#f59e0b',
         'Absent':  '#f05252',
-        'Weekend': '#9ca3af'
+        'Weekend': '#9ca3af',
+        'On Leave': '#f05252'
     }
 
     function applyStatusColor(sel) {
@@ -1937,7 +1938,7 @@ staffing.timesy.build_att_calendar = function(frm) {
     rows.forEach(function(r) {
         if (!r.date) return
         var st = r.status || ''
-        if      (st === 'Absent' || st === 'Release')       statusMap[r.date] = 'absent'
+        if      (st === 'Absent' || st === 'Release' || st=== 'On Leave')       statusMap[r.date] = 'absent'
         else if (st === 'Holiday' || st === 'Bad Weather')  statusMap[r.date] = 'holiday'
         else if (st === 'Friday' || st === 'Standby' || st === 'Weekend') statusMap[r.date] = 'weekend'
         else if (st === 'Working' && r.from_time && r.to_time) statusMap[r.date] = 'present'
@@ -2791,6 +2792,15 @@ frappe.ui.form.on('Timesy', {
                 show_add_project_dialog(frm)
             }, __('Time Sheet'))
         }
+        // New Leave Application button
+        cur_frm.add_custom_button(__('Leave Application'), function() {
+
+            frappe.new_doc('Leave Application', {
+                employee: frm.doc.employee,
+                custom_monthly_timesheet: frm.doc.name
+            })
+
+        }, __('Time Sheet'))
 
         cur_frm.call({ doc: cur_frm.doc, method: 'check_invoices', args: {}, freeze: true,
             freeze_message: 'Checking Sales Order...', async: false,

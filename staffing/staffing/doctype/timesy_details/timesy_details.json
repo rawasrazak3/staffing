@@ -104,7 +104,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Working\nAbsent\nMedical\nHoliday\nHoliday Working\nFriday Working\nHoliday Working Full Overtime\nFriday Working Full Overtime\nFriday\nStandby\nStandby Pay\nRelease\nBad Weather\nWeekend",
+   "options": "Working\nAbsent\nMedical\nHoliday\nHoliday Working\nFriday Working\nHoliday Working Full Overtime\nFriday Working Full Overtime\nFriday\nStandby\nStandby Pay\nRelease\nBad Weather\nWeekend\nOn Leave",
    "read_only_depends_on": "eval: parent.status == 'Completed'"
   }
  ],
