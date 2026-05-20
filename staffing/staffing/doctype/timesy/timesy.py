@@ -273,6 +273,7 @@ class Timesy(Document):
     'Friday':                        'On Leave',
     'Standby':                       'On Leave',
     'Weekend':                       'On Leave',
+    'On Leave':                      'On Leave'
     }
 
         # Get all dates in current timesy_details
