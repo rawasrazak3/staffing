@@ -510,9 +510,9 @@ def mark_leave_as_absent(employee_code, from_date, to_date):
         for detail in details:
             frappe.db.set_value('Timesy Details', detail.name, {
                 'status': 'Absent',
-                'from_time': '',
-                'to_time': '',
-                'project': ''
+                'from_time': None,
+                'to_time': None,
+                'project': None
             })
         if details:
             frappe.db.commit()
